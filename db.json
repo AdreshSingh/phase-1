@@ -1,6 +1,16 @@
 {
     "locations": [
         {
+            "id": 999,
+            "name": "Oxford Group of Institution",
+            "city": "Farrukhabad",
+            "state":"Uttar Pradesh",
+            "photo": "https://angular.io/assets/images/tutorials/faa/example-house.jpg",
+            "availableUnits": 99,
+            "wifi": true,
+            "laundry": false
+          },
+        {
             "id": 0,
             "name": "Acme Fresh Start Housing",
             "city": "Chicago",
