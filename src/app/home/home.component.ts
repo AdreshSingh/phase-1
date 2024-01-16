@@ -11,9 +11,9 @@ import { HousingService } from '../housing.service';
   imports: [CommonModule, HousingLocationComponent],
   template: `
   <section>
-    <form action="">
-      <input type="text" name="" id="" placeholder="Filter by cities" #fliter>
-      <button class="primary" type="button" (click)="filterResults(fliter.value)")>Search</button>
+    <form >
+    <input type="text" placeholder="Filter by city" #filter>
+      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
     </form>
   </section>
   <section class="results">
