@@ -25,7 +25,8 @@ import { HousingService } from '../housing.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
+  // static request by front-end
+  // readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
   housingLocationList: HousingLocation[] = [];
   housingService : HousingService = inject(HousingService)
@@ -33,8 +34,16 @@ export class HomeComponent {
   filteredLocationList: HousingLocation[] = [];
 
   constructor(){
-    this.housingLocationList = this.housingService.getAllHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+
+    //it using  static and synchronous code 🌟
+    // this.housingLocationList = this.housingService.getAllHousingLocations();
+    // this.filteredLocationList = this.housingLocationList;
+
+    // //it using  dynamic and asynchronous code 🌟
+    this.housingService.getAllHousingLocations().then((housingLocationList : HousingLocation[])=>{
+      this.filteredLocationList = housingLocationList;
+      this.housingLocationList = housingLocationList;
+    })
   }
 
   filterResults(text: string){
