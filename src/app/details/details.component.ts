@@ -58,8 +58,13 @@ export class DetailsComponent {
   })
 
   constructor(){
-    this.housingLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation = this.hosuingService.getHousingLocationById(this.housingLocationId)
+    this.housingLocationId = parseInt(this.route.snapshot.params['id'],10);
+    //it using  static and synchronous code
+    // this.housingLocation = this.hosuingService.getHousingLocationById(this.housingLocationId)
+
+    this.hosuingService.getHousingLocationById(this.housingLocationId).then((housingLocation)=>{
+      this.housingLocation = housingLocation;
+    })
   }
 
 
