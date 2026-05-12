@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../housing.service';
-import { HousingLocation } from '../housing-location';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import { HousingLocationInfo } from '../housinglocation';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
     <article>
       <img [src]="housingLocation?.photo" alt="Exterior photo of {{housingLocation?.name}}" class="listing-photo">
@@ -45,10 +45,10 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
   styleUrl: './details.component.css'
 })
 export class DetailsComponent {
-  route : ActivatedRoute = inject(ActivatedRoute)
+  route: ActivatedRoute = inject(ActivatedRoute)
   hosuingService = inject(HousingService)
-  housingLocation: HousingLocation | undefined;
-  
+  housingLocation: HousingLocationInfo | undefined;
+
   housingLocationId = -1;
 
   applyForm = new FormGroup({
@@ -57,22 +57,22 @@ export class DetailsComponent {
     email: new FormControl('')
   })
 
-  constructor(){
-    this.housingLocationId = parseInt(this.route.snapshot.params['id'],10);
+  constructor() {
+    this.housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     //it using  static and synchronous code
     // this.housingLocation = this.hosuingService.getHousingLocationById(this.housingLocationId)
 
-    this.hosuingService.getHousingLocationById(this.housingLocationId).then((housingLocation)=>{
+    this.hosuingService.getHousingLocationById(this.housingLocationId).then((housingLocation) => {
       this.housingLocation = housingLocation;
     })
   }
 
 
-  submitApplication(){
+  submitApplication() {
     this.hosuingService.submitApplication(
       this.applyForm.value.firstName ?? '',
       this.applyForm.value.lastName ?? '',
-      this.applyForm.value.email?? ''
+      this.applyForm.value.email ?? ''
     )
   }
 }

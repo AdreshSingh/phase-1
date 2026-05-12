@@ -1,8 +1,8 @@
-import { Component,inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { HousingLocation } from '../housing-location';
+import { HousingLocationInfo } from '../housinglocation';
 import { HousingService } from '../housing.service';
 
 @Component({
@@ -28,26 +28,26 @@ export class HomeComponent {
   // static request by front-end
   // readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  housingLocationList: HousingLocation[] = [];
-  housingService : HousingService = inject(HousingService)
+  housingLocationList: HousingLocationInfo[] = [];
+  housingService: HousingService = inject(HousingService)
 
-  filteredLocationList: HousingLocation[] = [];
+  filteredLocationList: HousingLocationInfo[] = [];
 
-  constructor(){
+  constructor() {
 
     //it using  static and synchronous code 🌟
     // this.housingLocationList = this.housingService.getAllHousingLocations();
     // this.filteredLocationList = this.housingLocationList;
 
     // //it using  dynamic and asynchronous code 🌟
-    this.housingService.getAllHousingLocations().then((housingLocationList : HousingLocation[])=>{
+    this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocationInfo[]) => {
       this.filteredLocationList = housingLocationList;
       this.housingLocationList = housingLocationList;
     })
   }
 
-  filterResults(text: string){
-    if(!text){
+  filterResults(text: string) {
+    if (!text) {
       this.filteredLocationList = this.housingLocationList;
       return;
     }
